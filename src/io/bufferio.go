@@ -3,6 +3,7 @@ import (
 	"strings"
 	"bufio"
 	"fmt"
+	"os"
 )
 
 
@@ -14,4 +15,8 @@ func main(){
 	fmt.Println(data, bufReader.Buffered())
 	str, _:=bufReader.ReadString(' ')
 	fmt.Println(str,bufReader.Buffered())
+
+	w:=bufio.NewWriter(os.Stdout)
+	fmt.Fprint(w,"Firstline")
+	w.Flush()
 }
