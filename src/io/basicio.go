@@ -3,6 +3,7 @@ import (
 	"io"
 	"strings"
 	"fmt"
+	"os"
 )
 //output n bytes of input stream
 func ReadFrom(reader io.Reader, num int)([]byte,error){
@@ -14,11 +15,27 @@ func ReadFrom(reader io.Reader, num int)([]byte,error){
 	return  p,err
 }
 
-func sampleReadFromString(){
+func readFromString(){
 	data,_ := ReadFrom(strings.NewReader("fromstring"),5)
 	fmt.Print(data)
 }
 
+func readFromStdin(){
+	fmt.Println("enter a string")
+	data,_:=ReadFrom(os.Stdin,7)
+	fmt.Print(data)
+}
+
+func readFromFile(){
+	//pwd,_:=os.Getwd()
+	file,_ :=os.Open("src\\io\\basicio.go")
+	defer file.Close()
+	data,_:=ReadFrom(file,7)
+	fmt.Println(data)
+}
+
 func main(){
-	sampleReadFromString()
+	//readFromString()
+	//readFromStdin()
+	readFromFile()
 }
